@@ -1,0 +1,51 @@
+[project]
+name = "jest-for-ai-agents"
+version = "0.1.0"
+description = "Async-first testing framework for AI agents"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["agents", "ai", "evaluation", "llm", "testing", "jest"]
+authors = [
+    { name = "haulynx", email = "haulynx8@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema>=4.26.0",
+    "openai>=3.19.2",
+]
+
+[project.scripts]
+jest-ai = "jest_ai.cli:main"
+
+[project.urls]
+Changelog = "https://github.com/haulynx/jest-for-ai-agents/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/haulynx/jest-for-ai-agents#readme"
+Issues = "https://github.com/haulynx/jest-for-ai-agents/issues"
+Source = "https://github.com/haulynx/jest-for-ai-agents"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "jest_ai"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.16.9",
+]

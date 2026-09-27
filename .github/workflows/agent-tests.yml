@@ -1,0 +1,19 @@
+name: Agent tests
+
+on: [pull_request, push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync --dev
+      - run: uv run pytest -v
+      # Replace with your test directory and agent target.
+      - run: uv run jest-ai test agent_tests --agent my_project.agents:support_agent --report jest-ai-report.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jest-ai-report
+          path: jest-ai-report.json
